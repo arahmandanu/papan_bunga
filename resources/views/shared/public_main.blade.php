@@ -31,7 +31,8 @@
   ======================================================== -->
 </head>
 
-<body class="vw-100 vh-100 bg-primary">
+<body class="bg-primary" style="overflow: hidden !important;  height: 100vh;
+margin: 0;">
 
     @yield('content')
 
