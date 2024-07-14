@@ -1,0 +1,32 @@
+html,
+body {
+    overflow: hidden !important;
+    height: 100vh;
+    margin: 0;
+
+}
+
+body {
+    background: #004b96 !important;
+}
+
+
+div #header {
+    height: 13vh;
+    max-height: 13vh;
+}
+
+div#footer {
+    height: 20vh;
+    margin-left: 0px !important;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    text-align: center;
+}
+
+table {
+    --bs-table-bg: #004b96 !important;
+    --bs-gutter-x: 0 !important;
+}

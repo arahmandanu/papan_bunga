@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Dashboard - NiceAdmin Bootstrap Template</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
@@ -21,6 +21,8 @@
 
     <!-- Template Main CSS File -->
     <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <script src="{{ asset('js/app.js') }}"></script>
 
     <!-- =======================================================
   * Template Name: NiceAdmin
@@ -31,10 +33,25 @@
   ======================================================== -->
 </head>
 
-<body class="bg-primary" style="overflow: hidden !important;  height: 100vh;
-margin: 0;">
-
+<body>
+    @include('public.header')
     @yield('content')
+    @include('public.footer')
+
+    <script>
+        $(document).ready(function() {
+            countHeight();
+        });
+
+        function countHeight() {
+            var maxHeight = $(window).height();
+            var headerHeight = $("div#header").height();
+            var footerHeight = $("div#footer").height()
+            var mainHeight = maxHeight - (headerHeight + footerHeight);
+            console.log(mainHeight);
+            $("div#mainApp").css("height", mainHeight);
+        }
+    </script>
 
     <!-- Vendor JS Files -->
     <script src="{{ asset('assets/vendor/apexcharts/apexcharts.min.js') }}"></script>
