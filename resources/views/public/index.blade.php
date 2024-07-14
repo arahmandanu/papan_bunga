@@ -8,16 +8,23 @@
                 <table class="table table-borderless">
                     <thead>
                         <tr>
-                            <th width="20%">MATA UANG</th>
-                            <th width="40%">BELI / BUY</th>
-                            <th width="40%">JUAL / SELL</th>
+                            <th width="30%">
+                                <h1>MATA UANG</h1>
+                            </th>
+                            <th width="35%">
+                                <h1>BELI / BUY</h1>
+                            </th>
+                            <th width="35%">
+                                <h1>JUAL / SELL</h1>
+                            </th>
                         </tr>
                     </thead>
 
                     <tbody>
                         @for ($i = 0; $i < 10; $i++)
                             <tr>
-                                <td>bendera | <h1>nama negara</h1>
+                                <td>
+                                    <span>bendera</span> | <h1>USD</h1>
                                 </td>
                                 <td>
                                     <h1>124.456,78</h1>

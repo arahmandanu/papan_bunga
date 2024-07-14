@@ -9,13 +9,7 @@ body {
   background: #004b96 !important;
 }
 
-div #header {
-  height: 13vh;
-  max-height: 13vh;
-}
-
 div#footer {
-  height: 20vh;
   margin-left: 0px !important;
   position: fixed;
   bottom: 0;
@@ -27,5 +21,15 @@ div#footer {
 table {
   --bs-table-bg: #004b96 !important;
   --bs-gutter-x: 0 !important;
+}
+table tbody > tr td:nth-child(even) {
+  background: blue;
+}
+table tbody > tr td:nth-child(odd) {
+  background: rgb(0, 255, 149);
+}
+table tr td,
+table tr th {
+  padding: 25px !important;
 }
 
