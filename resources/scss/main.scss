@@ -10,7 +10,10 @@ body {
     background: #004b96 !important;
 }
 
-
+div#mainApp {
+    padding-left: 3%;
+    padding-right: 3%;
+}
 
 div#footer {
     margin-left: 0px !important;
@@ -25,21 +28,29 @@ table {
     --bs-table-bg: #004b96 !important;
     --bs-gutter-x: 0 !important;
 
-    tbody>tr {
-        td:nth-child(even) {
-            background: blue;
+    tbody,
+    thead {
+        text-align: center;
+    }
+
+    thead th {
+        position: sticky;
+        top: 0;
+    }
+
+    tbody {
+        tr:nth-child(odd) {
+            td:nth-child(n+2) {
+                background-color: #192184 !important;
+            }
         }
 
-        td:nth-child(odd) {
-            background: rgb(0, 255, 149);
+        tr:nth-child(even) {
+            td:nth-child(n+2) {
+                background-color: #4368b1 !important;
+            }
         }
     }
 
-    tr {
 
-        td,
-        th {
-            padding: 25px !important;
-        }
-    }
 }
