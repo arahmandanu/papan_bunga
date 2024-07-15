@@ -5,14 +5,36 @@
         </div>
 
         <div style="text-align: center; padding: 5px">
-            <div class="bg-black rounded " style="width: 98%; white-space: nowrap; margin: 0 auto; display: flex">
-                <marquee behavior="slide" direction="left" scrollamount="10">
-                    <h1 id="my_font">
-                        SELAMAT DATANG DI BRI KENCANA DENPASAR
-                    </h1>
-                </marquee>
+            <div class="bg-black rounded " style="width: 98%; margin: 0 auto; display: inline-block; overflow: hidden;">
+                <h1 class="moving_text" id="para3">
+                    This is the third line of the
+                    example line of the example.
+                </h1>
             </div>
         </div>
 
     </div>
 </div>
+
+<script>
+    $(document).ready(function () {
+        const para3 = document.getElementById("para3");
+        animate(para3);
+    });
+
+    function animate(element) {
+        let elementWidth = element.offsetWidth;
+        let parentWidth = element.parentElement.offsetWidth;
+        let flag = 0;
+
+        setInterval(() => {
+            element.style.marginLeft = --flag + "px";
+
+            if (elementWidth == -flag) {
+                flag = parentWidth;
+                console.log('done');
+            }
+        }, 10);
+    }
+
+</script>

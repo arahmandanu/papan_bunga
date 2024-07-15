@@ -70,3 +70,11 @@ table tbody tr td:nth-child(1) {
   font-weight: bold;
 }
 
+.moving_text {
+  color: rgb(246, 222, 222);
+  font-weight: bold;
+  white-space: nowrap;
+  clear: both;
+  float: left;
+}
+
