@@ -39,8 +39,11 @@
     @include('public.footer')
 
     <script>
+        var displayTime = document.querySelector(".display-time");
+
         $(document).ready(function() {
             countHeight();
+            updateDate();
         });
 
         function countHeight() {

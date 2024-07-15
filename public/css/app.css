@@ -6,6 +6,7 @@ body {
 }
 
 body {
+  padding-top: 1%;
   background: #004b96 !important;
 }
 
@@ -21,11 +22,16 @@ div#footer {
   width: 100%;
   color: white;
   text-align: center;
+  background: #004b96 !important;
 }
 
 table {
   --bs-table-bg: #004b96 !important;
   --bs-gutter-x: 0 !important;
+}
+table th,
+table td {
+  color: white !important;
 }
 table tbody,
 table thead {
@@ -37,8 +43,30 @@ table thead th {
 }
 table tbody tr:nth-child(odd) td:nth-child(n+2) {
   background-color: #192184 !important;
+  vertical-align: middle;
 }
 table tbody tr:nth-child(even) td:nth-child(n+2) {
   background-color: #4368b1 !important;
+  vertical-align: middle;
+}
+table tbody tr td {
+  padding-bottom: 2px !important;
+}
+table tbody tr td img {
+  width: 150px;
+}
+table tbody tr td:nth-child(1) {
+  text-align: left;
+  align-items: center;
+  display: flex;
+}
+
+#my_font {
+  color: #e4dc6a !important;
+  font-weight: bold;
+}
+
+#my_font_2 {
+  font-weight: bold;
 }
 
