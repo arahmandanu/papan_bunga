@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\CurrencyController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\FooterTextController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PublicDashboardController;
 use Illuminate\Support\Facades\Route;
@@ -29,4 +30,5 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:web']], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('ShowDashboard');
 
     Route::resource('currency', CurrencyController::class);
+    Route::resource('footer_text', FooterTextController::class);
 });
