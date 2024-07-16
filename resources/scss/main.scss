@@ -11,7 +11,6 @@ body {
 }
 
 div#mainApp {
-    padding-top: 3%;
     padding-left: 3%;
     padding-right: 3%;
 }
@@ -40,9 +39,10 @@ table {
         text-align: center;
     }
 
-    thead th {
+    thead {
         position: sticky;
         top: 0;
+        z-index: 99999;
     }
 
     tbody {
@@ -60,19 +60,18 @@ table {
 
         tr {
             td {
-                padding-bottom: 3% !important;
-
-            }
-
-            td {
                 img {
-                    width: 150px;
+                    width: 175px;
                 }
             }
 
             td:nth-child(1) {
                 text-align: left;
                 align-items: center;
+            }
+
+            td:nth-child(n+2) {
+                align-content: center;
             }
         }
     }
@@ -89,9 +88,11 @@ table {
 }
 
 .moving_text {
-    color: rgb(246, 222, 222);
+    color: #e4dc6a !important;
     font-weight: bold;
     white-space: nowrap;
     clear: both;
     float: left;
+    padding-top: 1%;
+    padding-bottom: 1%;
 }
