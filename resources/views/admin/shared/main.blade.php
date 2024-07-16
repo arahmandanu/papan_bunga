@@ -31,10 +31,19 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+
 </head>
 
-<body id="public">
-    @yield('content')
+<body>
+    @include('admin.shared.header')
+    @include('admin.shared.left_sidebar')
+
+    <main id="main" class="main">
+        @yield('content')
+    </main>
+
+    @include('admin.shared.footer')
+
 
     <!-- Vendor JS Files -->
     <script src="{{ asset('assets/vendor/apexcharts/apexcharts.min.js') }}"></script>

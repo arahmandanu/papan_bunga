@@ -1,21 +1,15 @@
-html,
-body {
+body#public {
   overflow: hidden !important;
   height: 100vh;
   margin: 0;
-}
-
-body {
   padding-top: 1%;
   background: #004b96 !important;
 }
-
-div#mainApp {
+body#public div#mainApp {
   padding-left: 3%;
   padding-right: 3%;
 }
-
-div#footer {
+body#public div#footer {
   margin-left: 0px !important;
   position: fixed;
   bottom: 0;
@@ -24,51 +18,47 @@ div#footer {
   text-align: center;
   background: #004b96 !important;
 }
-
-table {
+body#public table {
   --bs-table-bg: #004b96 !important;
   --bs-gutter-x: 0 !important;
 }
-table th,
-table td {
+body#public table th,
+body#public table td {
   color: white !important;
 }
-table tbody,
-table thead {
+body#public table tbody,
+body#public table thead {
   text-align: center;
 }
-table thead {
+body#public table thead {
   position: sticky;
   top: 0;
   z-index: 99999;
 }
-table tbody tr:nth-child(odd) td:nth-child(n+2) {
+body#public table tbody tr:nth-child(odd) td:nth-child(n+2) {
   background-color: #192184 !important;
 }
-table tbody tr:nth-child(even) td:nth-child(n+2) {
+body#public table tbody tr:nth-child(even) td:nth-child(n+2) {
   background-color: #4368b1 !important;
 }
-table tbody tr td img {
+body#public table tbody tr td img {
   width: 175px;
 }
-table tbody tr td:nth-child(1) {
+body#public table tbody tr td:nth-child(1) {
   text-align: left;
   align-items: center;
 }
-table tbody tr td:nth-child(n+2) {
+body#public table tbody tr td:nth-child(n+2) {
   align-content: center;
 }
-
-#my_font {
+body#public #my_font {
   color: #e4dc6a !important;
   font-weight: bold;
 }
-
-#my_font_2 {
+body#public #my_font_2 {
   font-weight: bold;
 }
-
-.moving_text {
+body#public .moving_text {
   color: #e4dc6a !important;
   font-weight: bold;
   white-space: nowrap;
