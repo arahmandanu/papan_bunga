@@ -10,4 +10,13 @@ class Currency extends Model
     use HasFactory;
 
     public $table = 'currency';
+
+    protected $fillable = [
+        'flag',
+        'name',
+        'buy',
+        'sell',
+        'displayed',
+        'default'
+    ];
 }
