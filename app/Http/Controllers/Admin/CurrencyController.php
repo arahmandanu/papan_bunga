@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Currency;
 use App\Http\Controllers\Controller;
+use App\Models\Currency;
 use Illuminate\Http\Request;
 
 class CurrencyController extends Controller
@@ -16,7 +16,7 @@ class CurrencyController extends Controller
     public function index()
     {
         return view('admin.currency.index', [
-            'currencies' => Currency::all()
+            'currencies' => Currency::all(),
         ]);
     }
 
@@ -44,7 +44,6 @@ class CurrencyController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Currency  $createCurrencyTable
      * @return \Illuminate\Http\Response
      */
     public function show(Currency $createCurrencyTable)
@@ -55,7 +54,6 @@ class CurrencyController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Currency  $createCurrencyTable
      * @return \Illuminate\Http\Response
      */
     public function edit(Currency $createCurrencyTable)

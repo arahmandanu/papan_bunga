@@ -17,6 +17,6 @@ class Currency extends Model
         'buy',
         'sell',
         'displayed',
-        'default'
+        'default',
     ];
 }
