@@ -34,27 +34,7 @@
 </head>
 
 <body>
-    @include('public.header')
     @yield('content')
-    @include('public.footer')
-
-    <script>
-        var displayTime = document.querySelector(".display-time");
-
-        $(document).ready(function() {
-            countHeight();
-            updateDate();
-        });
-
-        function countHeight() {
-            var maxHeight = $(window).height();
-            var headerHeight = $("div#header").height();
-            var footerHeight = $("div#footer").height()
-            var mainHeight = maxHeight - (headerHeight + footerHeight);
-            console.log(mainHeight);
-            $("div#mainApp").css("height", mainHeight);
-        }
-    </script>
 
     <!-- Vendor JS Files -->
     <script src="{{ asset('assets/vendor/apexcharts/apexcharts.min.js') }}"></script>

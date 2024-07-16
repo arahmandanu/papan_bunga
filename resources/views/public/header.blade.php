@@ -1,48 +1,48 @@
 <div id="header">
     <div class="row">
-        <div class="col-2 text-center align-middle" style="align-content: center;">
-            <h1 class="text-white">TIME</h1>
+        <div class="col-3 text-center align-middle" style="align-content: center;">
+            <h1 class="text-white display-3">TIME</h1>
             {{-- 00:12 --}}
-            <h2 class="display-time" style="color: #d65318"></h2>
+            <h2 class="display-time display-4" style="color: #d65318; font-weight: bold"></h2>
         </div>
 
         <div class="col text-center align-middle" style="align-content: center">
             <img src="{{ asset('images/logo_bri.png') }}" alt="">
 
-            <h1 class="text-white">CABANG DENPASAR</h1>
+            <h1 class="text-white display-3">CABANG DENPASAR</h1>
 
-            <div style="padding-top: 2%">
-                <h1 style="color: #d65318; font-weight: bold">
+            <div style="padding-top: 10%;">
+                <h1 style="color: #d65318; font-weight: bold" class="display-1">
                     BRI EXCHANGE RATE
                 </h1>
             </div>
         </div>
 
-        <div class="col-2 text-center align-middle" style="align-content: center;">
-            <h1 class="text-white">DATE</h1>
+        <div class="col-3 text-center align-middle" style="align-content: center;">
+            <h1 class="text-white display-3">DATE</h1>
             {{-- 27 MEI 2024 --}}
-            <h2 id="display-date" style="color: #d65318"></h2>
+            <h2 class="display-4" id="display-date" style="color: #d65318; font-weight: bold"></h2>
         </div>
     </div>
 </div>
 <script>
-    $(document).ready(function () {
+    $(document).ready(function() {
         showTime();
     });
 
     // Time
     function showTime() {
-            let time = new Date();
-            displayTime.innerText = time.toLocaleTimeString("en-US", {
-                hour12: false,
-                hour: 'numeric',
-                minute: '2-digit'
-            });
+        let time = new Date();
+        displayTime.innerText = time.toLocaleTimeString("en-US", {
+            hour12: false,
+            hour: 'numeric',
+            minute: '2-digit'
+        });
 
-            // jangan di ubah timeout detikannya
-            setTimeout(showTime, 1000);
-            time = undefined;
-        }
+        // jangan di ubah timeout detikannya
+        setTimeout(showTime, 1000);
+        time = undefined;
+    }
 
 
     // Date
