@@ -114,8 +114,6 @@
                 if (nextPage > parseInt(totalPage)) {
                     nextPage = 1;
                 }
-                console.log(nextPage, currentPage)
-                var container = $('tbody#container_data');
 
                 elementCurrentPage = container.find('tr[index=' + currentPage + ']');
                 elementCurrentPage.fadeOut(1000, function() {
