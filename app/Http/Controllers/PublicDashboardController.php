@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Currency;
 use Illuminate\Http\Request;
 
 class PublicDashboardController extends Controller
@@ -13,7 +14,14 @@ class PublicDashboardController extends Controller
      */
     public function index()
     {
-        return view('public.index');
+        $maxShow = env('TOTAL_FLAG_SHOWED', 10);
+        $flags = Currency::where('displayed', true)->get()->toArray();
+        $data = array_chunk($flags, $maxShow);
+        return view('public.index', [
+            'currencies' => $data,
+            'maxShow' => 10,
+            'totalPage' => sizeof($data)
+        ]);
     }
 
     /**

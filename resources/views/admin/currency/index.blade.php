@@ -12,7 +12,7 @@
     </div>
 
     <section class="section dashboard">
-        <div class="row">
+        <div class="row card p-2">
             <div class="col-lg-12">
                 <table class="table datatable">
                     <thead>

@@ -22,28 +22,60 @@
                         </tr>
                     </thead>
 
-                    <tbody id="container_data">
-                        {{-- @for ($i = 0; $i < 26; $i++)
-                            <tr>
-                                <td class="justify-content-end">
-                                    <div class="d-flex flex-row text-center">
-                                        <div class="p-3">
-                                            <img src="{{ asset('flags/id.png') }}" class="rounded float-start"
-                                                alt="...">
-                                        </div>
-                                        <div class="p-3" style="align-content: center">
-                                            <span id="my_font_2" class="display-1">ID{{ $i }}</span>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <span id="my_font" class="display-1">124.456,78</span>
-                                </td>
-                                <td>
-                                    <span id="my_font" class="display-1">124.456,78</span>
-                                </td>
-                            </tr>
-                        @endfor --}}
+                    <tbody id="container_data" current_page="1" total={{ $totalPage }}>
+                        @forelse ($currencies as $chuck)
+                            @php
+                                $currentPage = $loop->iteration;
+                            @endphp
+
+                            @if ($loop->first)
+                                @foreach ($chuck as $item)
+                                    <tr index="{{ $currentPage }}">
+                                        <td class="justify-content-end">
+                                            <div class="d-flex flex-row text-center">
+                                                <div class="p-3">
+                                                    <img src="{{ asset($item['flag']) }}" class="rounded float-start"
+                                                        alt="...">
+                                                </div>
+                                                <div class="p-3" style="align-content: center">
+                                                    <span id="my_font_2" class="display-1">{{ $item['name'] }}</span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <span id="my_font" class="display-1">{{ $item['buy'] }}</span>
+                                        </td>
+                                        <td>
+                                            <span id="my_font" class="display-1">{{ $item['sell'] }}</span>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @else
+                                @foreach ($chuck as $item)
+                                    <tr index="{{ $currentPage }}" style="display: none">
+                                        <td class="justify-content-end">
+                                            <div class="d-flex flex-row text-center">
+                                                <div class="p-3">
+                                                    <img src="{{ asset($item['flag']) }}" class="rounded float-start"
+                                                        alt="...">
+                                                </div>
+                                                <div class="p-3" style="align-content: center">
+                                                    <span id="my_font_2" class="display-1">{{ $item['name'] }}</span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <span id="my_font" class="display-1">{{ $item['buy'] }}</span>
+                                        </td>
+                                        <td>
+                                            <span id="my_font" class="display-1">{{ $item['sell'] }}</span>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @endif
+
+                        @empty
+                        @endforelse
                     </tbody>
                 </table>
             </div>
@@ -58,28 +90,59 @@
         var displayTime = document.querySelector(".display-time");
         var currencyTable = $('div#mainApp');
         var currencyTableST = currencyTable.scrollTop();
-
+        const flags = {!! json_encode($currencies) !!};
         $(document).ready(function() {
             countHeight();
             updateDate();
             // currency_table_auto_scroll();
-            fill_data();
+            // fill_data();
+            autoMoveTable();
         });
 
-        function fill_data() {
-            var data = [];
-            for (let index = 0; index < 30; index++) {
-                data.push({
-                    n: 'ID' + index,
-                    b: 124.456,
-                    c: 124.456,
+        function autoMoveTable() {
+            var container = $('tbody#container_data');
+            var currentPage = container.attr('current_page');
+            var totalPage = container.attr('total');
+            if (totalPage <= 1) return;
+
+
+            function setNextPage() {
+                var container = $('tbody#container_data');
+                var currentPage = container.attr('current_page');
+                var totalPage = container.attr('total');
+                nextPage = parseInt(currentPage) + 1;
+                if (nextPage > parseInt(totalPage)) {
+                    nextPage = 1;
+                }
+                console.log(nextPage, currentPage)
+                var container = $('tbody#container_data');
+
+                elementCurrentPage = container.find('tr[index=' + currentPage + ']');
+                elementCurrentPage.fadeOut(1000, function() {
+                    elementCurrentPage.css("display", 'none');
                 });
+
+                setTimeout(function() {
+                    elementNextPage = container.find('tr[index=' + nextPage + ']');
+                    elementNextPage.removeAttr("style");
+                    elementNextPage.fadeIn('slow');
+                    container.attr('current_page', String(nextPage))
+                }, 1000);
+
             }
+
+            setInterval(() => {
+                setNextPage()
+            }, intervalFlagMove);
+        }
+
+        function fill_data() {
+            if (flags.length == 0) return;
 
             var container = $('tbody#container_data');
             var splitted = []
-            for (let i = 0; i < data.length; i += chunkSize) {
-                var chunkeddata = data.slice(i, i + chunkSize);
+            for (let i = 0; i < flags.length; i += chunkSize) {
+                var chunkeddata = flags.slice(i, i + chunkSize);
                 splitted.push(chunkeddata);
             }
 
@@ -107,18 +170,19 @@
                 html += '<td class="justify-content-end">';
                 html += '<div class="d-flex flex-row text-center">';
                 html += '<div class="p-3">';
-                html += '<img src="" class="rounded float-start" alt="...">';
+                html += '<img src="{{ asset('') }}' + valueOfElement.flag +
+                    '" class="rounded float-start" alt="...">';
                 html += '</div>';
                 html += '<div class="p-3" style="align-content: center">';
-                html += '<span id="my_font_2" class="display-1">ID ' + indexInArray + indexed + '</span>';
+                html += '<span id="my_font_2" class="display-1">' + valueOfElement.name + '</span>';
                 html += ' </div>';
                 html += ' </div>';
                 html += '</td>';
                 html += '<td>';
-                html += ' <span id="my_font" class="display-1">124.456,78</span>';
+                html += ' <span id="my_font" class="display-1">' + valueOfElement.buy + '</span>';
                 html += '</td>';
                 html += '<td>';
-                html += '<span id="my_font" class="display-1">124.456,78</span>';
+                html += '<span id="my_font" class="display-1">' + valueOfElement.sell + '</span>';
                 html += '</td>';
                 html += '</tr>';
             });
