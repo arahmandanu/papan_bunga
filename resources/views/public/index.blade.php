@@ -82,7 +82,7 @@
         </div>
     </div>
 
-    @include('public.footer')
+    @include('public.footer', ['footers' => $footers])
 
     <script>
         var intervalFlagMove = {{ env('INTERVAL_FLAG_MOVE', 50000) }};

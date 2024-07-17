@@ -28,7 +28,7 @@
             </a>
             <ul id="components-nav2" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
-                    <a href="{{ route('currency.index') }}">
+                    <a href="{{ route('footer_text.index') }}">
                         <i class="bi bi-circle"></i><span>Teks berjalan</span>
                     </a>
                 </li>
