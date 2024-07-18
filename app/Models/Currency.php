@@ -9,6 +9,8 @@ class Currency extends Model
 {
     use HasFactory;
 
+    public const FLAG_PATH = 'flags/';
+
     public $table = 'currency';
 
     protected $fillable = [

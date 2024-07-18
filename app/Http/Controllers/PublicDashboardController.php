@@ -23,8 +23,8 @@ class PublicDashboardController extends Controller
         return view('public.index', [
             'currencies' => $data,
             'maxShow' => 10,
-            'totalPage' => sizeof($data),
-            'footers' => $footers
+            'totalPage' => count($data),
+            'footers' => $footers,
         ]);
     }
 

@@ -21,7 +21,7 @@ class CurrencySeeder extends Seeder
                 'buy' => '124.456,78',
                 'sell' => '124.456,78',
                 'displayed' => true,
-                'default' => true
+                'default' => true,
             ],
             [
                 'name' => 'SGD',
@@ -29,7 +29,7 @@ class CurrencySeeder extends Seeder
                 'buy' => '124.456,78',
                 'sell' => '124.456,78',
                 'displayed' => true,
-                'default' => true
+                'default' => true,
             ],
             [
                 'name' => 'EUR',
@@ -37,7 +37,7 @@ class CurrencySeeder extends Seeder
                 'buy' => '124.456,78',
                 'sell' => '124.456,78',
                 'displayed' => true,
-                'default' => true
+                'default' => true,
             ],
             [
                 'name' => 'AUD',
@@ -45,7 +45,7 @@ class CurrencySeeder extends Seeder
                 'buy' => '124.456,78',
                 'sell' => '124.456,78',
                 'displayed' => true,
-                'default' => true
+                'default' => true,
             ],
             [
                 'name' => 'GBP',
@@ -53,7 +53,7 @@ class CurrencySeeder extends Seeder
                 'buy' => '124.456,78',
                 'sell' => '124.456,78',
                 'displayed' => true,
-                'default' => true
+                'default' => true,
             ],
             [
                 'name' => 'JPY',
@@ -61,7 +61,7 @@ class CurrencySeeder extends Seeder
                 'buy' => '124.456,78',
                 'sell' => '124.456,78',
                 'displayed' => true,
-                'default' => true
+                'default' => true,
             ],
             [
                 'name' => 'PHP',
@@ -69,7 +69,7 @@ class CurrencySeeder extends Seeder
                 'buy' => '124.456,78',
                 'sell' => '124.456,78',
                 'displayed' => true,
-                'default' => true
+                'default' => true,
             ],
             [
                 'name' => 'NZD',
@@ -77,7 +77,7 @@ class CurrencySeeder extends Seeder
                 'buy' => '124.456,78',
                 'sell' => '124.456,78',
                 'displayed' => true,
-                'default' => true
+                'default' => true,
             ],
             [
                 'name' => 'NOK',
@@ -85,7 +85,7 @@ class CurrencySeeder extends Seeder
                 'buy' => '124.456,78',
                 'sell' => '124.456,78',
                 'displayed' => true,
-                'default' => true
+                'default' => true,
             ],
             [
                 'name' => 'MYR',
@@ -93,7 +93,7 @@ class CurrencySeeder extends Seeder
                 'buy' => '124.456,78',
                 'sell' => '124.456,78',
                 'displayed' => true,
-                'default' => true
+                'default' => true,
             ],
             [
                 'name' => 'KRW',
@@ -101,7 +101,7 @@ class CurrencySeeder extends Seeder
                 'buy' => '124.456,78',
                 'sell' => '124.456,78',
                 'displayed' => true,
-                'default' => true
+                'default' => true,
             ],
             [
                 'name' => 'TWD',
@@ -109,7 +109,7 @@ class CurrencySeeder extends Seeder
                 'buy' => '124.456,78',
                 'sell' => '124.456,78',
                 'displayed' => true,
-                'default' => true
+                'default' => true,
             ],
             [
                 'name' => 'THB',
@@ -117,7 +117,7 @@ class CurrencySeeder extends Seeder
                 'buy' => '124.456,78',
                 'sell' => '124.456,78',
                 'displayed' => true,
-                'default' => true
+                'default' => true,
             ],
             [
                 'name' => 'DKK',
@@ -125,7 +125,7 @@ class CurrencySeeder extends Seeder
                 'buy' => '124.456,78',
                 'sell' => '124.456,78',
                 'displayed' => true,
-                'default' => true
+                'default' => true,
             ],
             [
                 'name' => 'INR',
@@ -133,7 +133,7 @@ class CurrencySeeder extends Seeder
                 'buy' => '124.456,78',
                 'sell' => '124.456,78',
                 'displayed' => true,
-                'default' => true
+                'default' => true,
             ],
             [
                 'name' => 'CNY',
@@ -141,8 +141,8 @@ class CurrencySeeder extends Seeder
                 'buy' => '124.456,78',
                 'sell' => '124.456,78',
                 'displayed' => true,
-                'default' => true
-            ]
+                'default' => true,
+            ],
         ]);
     }
 }

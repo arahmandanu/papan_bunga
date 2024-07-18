@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Currency;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class CurrencyController extends Controller
 {
@@ -27,60 +28,110 @@ class CurrencyController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.currency.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\Currency  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Currency $request)
+    public function store(Request $request)
+    {
+        $validated = Validator::make($request->all(), [
+            'flag' => [
+                'required',
+                'file',
+                'mimes:jpg,jpeg,png',
+                'max:1024',
+            ],
+            'name' => 'required|string',
+            'buy' => 'required|string',
+            'sell' => 'required|string',
+        ])->validate();
+
+        $images = $request->flag;
+        $imageName = time().'.'.$images->extension();
+
+        try {
+            $url_path = $images->move(Currency::FLAG_PATH, $imageName);
+        } catch (\Throwable $th) {
+            flash('Gagal menyimpan gambar! silahkan hubungi admin anda!')->error();
+
+            return redirect()->back();
+        }
+
+        $data = array_merge($validated, ['default' => false, 'displayed' => true, 'flag' => $url_path]);
+        if (Currency::create($data)) {
+            flash('Sukses menyimpan data')->success();
+        } else {
+            flash('Gagal menyimpan data')->error();
+        }
+
+        return redirect()->route('currency.index');
+    }
+
+    public function show(Currency $currency)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Currency $createCurrencyTable)
+    public function edit(Currency $currency)
     {
-        //
+        return view('admin.currency.edit', [
+            'currency' => $currency,
+        ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Currency $createCurrencyTable)
+    public function update(Request $request, Currency $currency)
     {
-        //
+        $validated = Validator::make($request->all(), [
+            'flag' => [
+                'file',
+                'mimes:jpg,jpeg,png',
+                'max:1024',
+            ],
+            'name' => 'required|string',
+            'buy' => 'required|string',
+            'sell' => 'required|string',
+            'displayed' => 'required|boolean',
+        ])->validate();
+
+        if ($request->flag) {
+            $images = $request->flag;
+            $imageName = time().'.'.$images->extension();
+
+            try {
+                $url_path = $images->move(Currency::FLAG_PATH, $imageName);
+            } catch (\Throwable $th) {
+                flash('Gagal mengubah gambar baru! silahkan hubungi admin anda! <br> error'.$th->getMessage())->error();
+
+                return redirect()->back();
+            }
+
+            $file_path = $currency->flag;
+            if (file_exists(public_path($file_path))) {
+                unlink(public_path($file_path));
+            }
+            $validated['flag'] = $url_path;
+        }
+
+        if ($currency->update($validated)) {
+            flash('Sukses Mengubah data')->success();
+        } else {
+            flash('Gagal Mengubah data')->error();
+        }
+
+        return redirect()->route('currency.index');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateCreateCurrencyTableRequest  $request
-     * @param  \App\Models\CreateCurrencyTable  $createCurrencyTable
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Currency $createCurrencyTable)
+    public function destroy(Currency $currency)
     {
-        //
-    }
+        $file_path = $currency->flag;
+        if ($currency->delete()) {
+            if (file_exists(public_path($file_path))) {
+                unlink(public_path($file_path));
+            }
+            flash('Sukses menghapus data')->success();
+        } else {
+            flash('Gagal menghapus data')->error();
+        }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\CreateCurrencyTable  $createCurrencyTable
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Currency $createCurrencyTable)
-    {
-        //
+        return redirect()->route('currency.index');
     }
 }

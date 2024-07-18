@@ -2,11 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\FooterText;
-
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreFooterTextRequest;
-use App\Http\Requests\UpdateFooterTextRequest;
+use App\Models\FooterText;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -20,7 +17,7 @@ class FooterTextController extends Controller
     public function index()
     {
         return view('admin.footer_text.index', [
-            'footerTexts' => FooterText::orderBy('number_show', 'asc')->get()
+            'footerTexts' => FooterText::orderBy('number_show', 'asc')->get(),
         ]);
     }
 
@@ -35,7 +32,7 @@ class FooterTextController extends Controller
         $used = FooterText::all()->pluck('number_show')->toArray();
 
         return view('admin.footer_text.create', [
-            'numberDisplay' => array_diff($defaultNumber, $used)
+            'numberDisplay' => array_diff($defaultNumber, $used),
         ]);
     }
 
@@ -49,7 +46,7 @@ class FooterTextController extends Controller
     {
         $validated = Validator::make($request->all(), [
             'text' => 'required|string',
-            'number_show' => 'required|integer|unique:footer_texts,number_show'
+            'number_show' => 'required|integer|unique:footer_texts,number_show',
         ])->validate();
 
         if (FooterText::create($validated)) {
@@ -64,7 +61,6 @@ class FooterTextController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\FooterText  $footerText
      * @return \Illuminate\Http\Response
      */
     public function show(FooterText $footerText)
@@ -75,7 +71,6 @@ class FooterTextController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\FooterText  $footerText
      * @return \Illuminate\Http\Response
      */
     public function edit(FooterText $footerText)
@@ -85,9 +80,10 @@ class FooterTextController extends Controller
 
         $canUsed = [];
         $canUsed = array_merge($canUsed, array_diff($defaultNumber, $used));
+
         return view('admin.footer_text.edit', [
             'footerText' => $footerText,
-            'numberDisplay' => $canUsed
+            'numberDisplay' => $canUsed,
         ]);
     }
 
@@ -95,14 +91,13 @@ class FooterTextController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \App\Http\Requests\UpdateFooterTextRequest  $request
-     * @param  \App\Models\FooterText  $footerText
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, FooterText $footerText)
     {
         $validated = Validator::make($request->all(), [
             'text' => 'required|string',
-            'number_show' => "required|integer|unique:footer_texts,number_show,$footerText->id"
+            'number_show' => "required|integer|unique:footer_texts,number_show,$footerText->id",
         ])->validate();
 
         if ($footerText->update($validated)) {
@@ -117,7 +112,6 @@ class FooterTextController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\FooterText  $footerText
      * @return \Illuminate\Http\Response
      */
     public function destroy(FooterText $footerText)

@@ -8,10 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class FooterText extends Model
 {
     use HasFactory;
+
     public $table = 'footer_texts';
 
     protected $fillable = [
         'text',
-        'number_show'
+        'number_show',
     ];
 }

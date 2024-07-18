@@ -13,6 +13,14 @@
 
     <section class="section dashboard">
         <div class="row card p-2">
+            <div class="col-lg-12 p2">
+                @include('flash::message')
+            </div>
+
+            <div class="col-lg-12">
+                <a type="button" href="{{ route('currency.create') }}" class="btn btn-primary rounded-pill">Tambah</a>
+            </div>
+
             <div class="col-lg-12">
                 <table class="table datatable">
                     <thead>
@@ -30,17 +38,29 @@
                     <tbody>
                         @forelse ($currencies as $item)
                             <tr>
-                                <td>{{ $item->name }}</td>
-                                <td><img src="{{ asset('flags/id.png') }}" alt=""></td>
-                                <td>{{ $item->buy }}</td>
-                                <td>{{ $item->sell }}</td>
-                                <td>{{ $item->displayed == 1 ? '<span class="badge bg-success">yes</span>' : '<span class="badge bg-danger">no</span>' }}
+                                <td style="text-align: center; vertical-align:middle">{{ $item->name }}</td>
+                                <td><img style="width: 50px" src="{{ asset($item->flag) }}" alt=""></td>
+                                <td style="text-align: center; vertical-align:middle">{{ $item->buy }}</td>
+                                <td style="text-align: center; vertical-align:middle">{{ $item->sell }}</td>
+                                <td style="text-align: center; vertical-align:middle">
+                                    @if ($item->displayed == 1)
+                                        <span class="badge bg-success">yes</span>
+                                    @else
+                                        <span class="badge bg-danger">no</span>
+                                    @endif
                                 </td>
-                                <td>
+                                <td style="text-align: center; vertical-align:middle">
                                     <div class="btn-group" role="group" aria-label="Basic example">
-                                        <button type="button" class="btn btn-primary">Left</button>
-                                        <button type="button" class="btn btn-primary">Middle</button>
-                                        <button type="button" class="btn btn-primary">Right</button>
+                                        @if ($item->default == false)
+                                            <form action="{{ route('currency.destroy', $item->id) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+
+                                                <button type="submit" class="btn btn-danger">Hapus</button>
+                                            </form>
+                                        @endif
+                                        <a type="button" class="btn btn-primary"
+                                            href="{{ route('currency.edit', $item->id) }}">Edit</a>
                                     </div>
                                 </td>
                             </tr>
