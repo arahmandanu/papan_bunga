@@ -1,36 +1,42 @@
-<div id="footer" class="pt-5">
+<div id="footer">
     <div class="row">
         <div class="col-12 text-center align-middle" style="align-content: center;">
             <div class="row">
-                <div class="col-md-2 pb-5">
-                    <img height="155px" src="{{ asset('images/contact_bri.jpg') }}" alt="contact bri">
+                <div class="col-md-2 ms-2 pb-1">
+                    <img height="100px" src="{{ asset('images/contact_bri.jpg') }}" alt="contact bri">
                 </div>
 
-                <div class="col">
+                <div class="col ms-4">
                     <div class="row">
                         <div class="col-12 text-start pb-2">
-                            <a href="https://bri.co.id/" style="color: white" class="display-3">www.bri.co.id</a>
+                            <h1><a href="https://bri.co.id/" style="color: white">www.bri.co.id</a></h1>
                         </div>
 
                         <div class="col-12">
                             <div class="d-flex flex-row mb-3">
                                 <div>
-                                    <a href="https://www.instagram.com/bankbri_id/" style="color: white">
-                                        <i class="bx bxl-instagram display-5"> bankbri_id</i>
-                                    </a>
+                                    <h3>
+                                        <a href="https://www.instagram.com/bankbri_id/" style="color: white">
+                                            <i class="bx bxl-instagram">bankbri_id</i>
+                                        </a>
+                                    </h3>
                                 </div>
 
-                                <div class="ps-5">
-                                    <a href="https://www.facebook.com/BRIofficialpage" style="color: white">
-                                        <i class="bx bxl-facebook display-5"> BRIofficialpage</i>
-                                    </a>
+                                <div class="ps-4">
+                                    <h3>
+                                        <a href="https://www.facebook.com/BRIofficialpage" style="color: white">
+                                            <i class="bx bxl-facebook">BRIofficialpage</i>
+                                        </a>
+                                    </h3>
                                 </div>
 
-                                <div class="ps-5">
-                                    <a href="https://www.youtube.com/channel/UCRHFE_ooDrkEiRRJbog3EjA"
-                                        style="color: white">
-                                        <i class="bx bxl-youtube display-5"> BANK BRI</i>
-                                    </a>
+                                <div class="ps-4">
+                                    <h3>
+                                        <a href="https://www.youtube.com/channel/UCRHFE_ooDrkEiRRJbog3EjA"
+                                            style="color: white">
+                                            <i class="bx bxl-youtube">BANK BRI</i>
+                                        </a>
+                                    </h3>
                                 </div>
                             </div>
                         </div>
@@ -39,15 +45,15 @@
             </div>
         </div>
 
-        <div style="text-align: center; padding: 5px;  border-radius: 25px;">
+        <div style="text-align: center; padding: 5px;  border-radius: 10px;">
             <div class="bg-black"
                 style="width: 98%; margin: 0 auto; display: inline-block; overflow: hidden;  border-radius: 25px;">
                 @if ($footers->count() == 0)
-                    <h1 class="moving_text display-1 invisible" id="para3">
-                        -
-                    </h1>
+                <h1 class="moving_text invisible" id="para3">
+                    -
+                </h1>
                 @else
-                    <h1 class="moving_text display-1" id='para3'></h1>
+                <h1 class="moving_text" id='para3'></h1>
                 @endif
             </div>
         </div>

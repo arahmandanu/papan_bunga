@@ -40,10 +40,10 @@ body#public table tbody tr:nth-child(odd) td:nth-child(n+2) {
   background-color: #192184 !important;
 }
 body#public table tbody tr:nth-child(even) td:nth-child(n+2) {
-  background-color: #4368b1 !important;
+  background-color: #2491df !important;
 }
 body#public table tbody tr td img {
-  width: 175px;
+  width: 100px;
 }
 body#public table tbody tr td:nth-child(1) {
   text-align: left;

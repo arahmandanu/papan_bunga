@@ -1,27 +1,27 @@
 <div id="header">
     <div class="row">
         <div class="col-3 text-center align-middle" style="align-content: center;">
-            <h1 class="text-white display-3">TIME</h1>
+            <h1 class="text-white">TIME</h1>
             {{-- 00:12 --}}
-            <h2 class="display-time display-4" style="color: #d65318; font-weight: bold"></h2>
+            <h2 class="display-time " style="color: #d65318; font-weight: bold"></h2>
         </div>
 
         <div class="col text-center align-middle" style="align-content: center">
-            <img src="{{ asset('images/logo_bri.png') }}" alt="">
+            <img style="width: 250px" src="{{ asset('images/logo_bri.png') }}" alt="">
 
-            <h1 class="text-white display-3">CABANG DENPASAR</h1>
+            <h1 class="text-white">CABANG DENPASAR</h1>
 
             <div style="padding-top: 10%;">
-                <h1 style="color: #d65318; font-weight: bold" class="display-1">
+                <h1 style="color: #d65318; font-weight: bold" class="display-5">
                     BRI EXCHANGE RATE
                 </h1>
             </div>
         </div>
 
         <div class="col-3 text-center align-middle" style="align-content: center;">
-            <h1 class="text-white display-3">DATE</h1>
+            <h1 class="text-white display-5">DATE</h1>
             {{-- 27 MEI 2024 --}}
-            <h2 class="display-4" id="display-date" style="color: #d65318; font-weight: bold"></h2>
+            <h2 class="" id="display-date" style="color: #d65318; font-weight: bold"></h2>
         </div>
     </div>
 </div>
