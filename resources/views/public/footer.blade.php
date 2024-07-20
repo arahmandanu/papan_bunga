@@ -1,7 +1,42 @@
-<div id="footer">
+<div id="footer" class="pt-5">
     <div class="row">
         <div class="col-12 text-center align-middle" style="align-content: center;">
-            <h1>LOGO LOGO</h1>
+            <div class="row">
+                <div class="col-md-2 pb-5">
+                    <img height="155px" src="{{ asset('images/contact_bri.jpg') }}" alt="contact bri">
+                </div>
+
+                <div class="col">
+                    <div class="row">
+                        <div class="col-12 text-start pb-2">
+                            <a href="https://bri.co.id/" style="color: white" class="display-3">www.bri.co.id</a>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="d-flex flex-row mb-3">
+                                <div>
+                                    <a href="https://www.instagram.com/bankbri_id/" style="color: white">
+                                        <i class="bx bxl-instagram display-5"> bankbri_id</i>
+                                    </a>
+                                </div>
+
+                                <div class="ps-5">
+                                    <a href="https://www.facebook.com/BRIofficialpage" style="color: white">
+                                        <i class="bx bxl-facebook display-5"> BRIofficialpage</i>
+                                    </a>
+                                </div>
+
+                                <div class="ps-5">
+                                    <a href="https://www.youtube.com/channel/UCRHFE_ooDrkEiRRJbog3EjA"
+                                        style="color: white">
+                                        <i class="bx bxl-youtube display-5"> BANK BRI</i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div style="text-align: center; padding: 5px;  border-radius: 25px;">
