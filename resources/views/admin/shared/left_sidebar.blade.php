@@ -32,13 +32,19 @@
                         <i class="bi bi-circle"></i><span>Teks berjalan</span>
                     </a>
                 </li>
+
+                <li>
+                    <a href="{{ route('text_color.index') }}">
+                        <i class="bi bi-circle"></i><span>Warna Teks</span>
+                    </a>
+                </li>
             </ul>
         </li>
 
         <li class="nav-item">
             <a class="nav-link collapsed" href="users-profile.html">
                 <i class="bi bi-person"></i>
-                <span>Properties</span>
+                <span>Unit</span>
             </a>
         </li>
 

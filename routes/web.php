@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\Admin\CurrencyController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\FooterTextColorController;
 use App\Http\Controllers\Admin\FooterTextController;
+use App\Http\Controllers\Admin\TextColorController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PublicDashboardController;
 use Illuminate\Support\Facades\Route;
@@ -31,4 +33,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:web']], function () {
 
     Route::resource('currency', CurrencyController::class);
     Route::resource('footer_text', FooterTextController::class);
+    Route::resource('text_color', TextColorController::class);
+
+    Route::get('/text_color/reset/{text_color}', [TextColorController::class, 'reset'])->name('resetColor');
 });

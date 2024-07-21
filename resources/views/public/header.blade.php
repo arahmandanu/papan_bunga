@@ -3,7 +3,11 @@
         <div class="col-3 text-center align-middle" style="align-content: center;">
             <h1 class="text-white">TIME</h1>
             {{-- 00:12 --}}
-            <h2 class="display-time " style="color: #d65318; font-weight: bold"></h2>
+            <h2 class="display-time "
+                @if (Arr::get($colors, 'data_time_color')) style="color: {{ Arr::get($colors, 'data_time_color.value') ?? Arr::get($colors, 'data_time_color.default') }} !important; font-weight: bold"
+                @else
+                style="color: #d65318; font-weight: bold" @endif>
+            </h2>
         </div>
 
         <div class="col text-center align-middle" style="align-content: center">
@@ -12,7 +16,10 @@
             <h1 class="text-white">CABANG DENPASAR</h1>
 
             <div style="padding-top: 10%;">
-                <h1 style="color: #d65318; font-weight: bold" class="display-5">
+                <h1 class="display-5"
+                    @if (Arr::get($colors, 'data_time_color')) style="color: {{ Arr::get($colors, 'data_time_color.value') ?? Arr::get($colors, 'data_time_color.default') }} !important; font-weight: bold"
+                    @else
+                    style="color: #d65318; font-weight: bold" @endif>
                     BRI EXCHANGE RATE
                 </h1>
             </div>
@@ -21,7 +28,11 @@
         <div class="col-3 text-center align-middle" style="align-content: center;">
             <h1 class="text-white display-5">DATE</h1>
             {{-- 27 MEI 2024 --}}
-            <h2 class="" id="display-date" style="color: #d65318; font-weight: bold"></h2>
+            <h2 class="" id="display-date"
+                @if (Arr::get($colors, 'data_time_color')) style="color: {{ Arr::get($colors, 'data_time_color.value') ?? Arr::get($colors, 'data_time_color.default') }} !important; font-weight: bold"
+            @else
+            style="color: #d65318; font-weight: bold" @endif>
+            </h2>
         </div>
     </div>
 </div>

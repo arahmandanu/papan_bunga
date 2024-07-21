@@ -49,11 +49,13 @@
             <div class="bg-black"
                 style="width: 98%; margin: 0 auto; display: inline-block; overflow: hidden;  border-radius: 25px;">
                 @if ($footers->count() == 0)
-                <h1 class="moving_text invisible" id="para3">
-                    -
-                </h1>
+                    <h1 class="moving_text invisible" id="para3">
+                        -
+                    </h1>
                 @else
-                <h1 class="moving_text" id='para3'></h1>
+                    <h1 class="moving_text" id='para3'
+                        @if (Arr::get($colors, 'footer_color')) style="color: {{ Arr::get($colors, 'footer_color.value') ?? Arr::get($colors, 'footer_color.default') }} !important" @endif>
+                    </h1>
                 @endif
             </div>
         </div>

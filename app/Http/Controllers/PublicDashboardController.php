@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Currency;
 use App\Models\FooterText;
+use App\Models\TextColor;
 use Illuminate\Http\Request;
 
 class PublicDashboardController extends Controller
@@ -19,12 +20,21 @@ class PublicDashboardController extends Controller
         $flags = Currency::where('displayed', true)->get()->toArray();
         $data = array_chunk($flags, $maxShow);
         $footers = FooterText::orderBy('number_show', 'asc')->get()->pluck('text');
+        $allColor = TextColor::all();
+        $colors = [];
+        foreach ($allColor as $key => $value) {
+            $colors[$value->name] = [
+                'value' => $value->value,
+                'default' => $value->default
+            ];
+        }
 
         return view('public.index', [
             'currencies' => $data,
             'maxShow' => 10,
             'totalPage' => count($data),
             'footers' => $footers,
+            'colors' => $colors
         ]);
     }
 
