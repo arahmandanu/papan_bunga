@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Currency;
 use App\Models\FooterText;
+use App\Models\Properties;
 use App\Models\TextColor;
 use Illuminate\Http\Request;
 
@@ -16,6 +17,7 @@ class PublicDashboardController extends Controller
      */
     public function index()
     {
+        $properties = Properties::first();
         $maxShow = env('TOTAL_FLAG_SHOWED', 10);
         $flags = Currency::where('displayed', true)->get()->toArray();
         $data = array_chunk($flags, $maxShow);
@@ -34,7 +36,8 @@ class PublicDashboardController extends Controller
             'maxShow' => 10,
             'totalPage' => count($data),
             'footers' => $footers,
-            'colors' => $colors
+            'colors' => $colors,
+            'properties' => $properties
         ]);
     }
 
