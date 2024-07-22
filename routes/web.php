@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\CurrencyController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\FooterTextColorController;
 use App\Http\Controllers\Admin\FooterTextController;
+use App\Http\Controllers\Admin\PropertiesController;
 use App\Http\Controllers\Admin\TextColorController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PublicDashboardController;
@@ -36,4 +37,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:web']], function () {
     Route::resource('text_color', TextColorController::class);
 
     Route::get('/text_color/reset/{text_color}', [TextColorController::class, 'reset'])->name('resetColor');
+
+    Route::group(['prefix' => 'properties'], function () {
+        Route::get('/company', [PropertiesController::class, 'index'])->name('properties.index');
+    });
 });

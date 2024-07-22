@@ -42,7 +42,7 @@
         </li>
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="users-profile.html">
+            <a class="nav-link collapsed" href="{{ route('properties.index') }}">
                 <i class="bi bi-person"></i>
                 <span>Unit</span>
             </a>
