@@ -18,15 +18,15 @@ class SubscribeMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        $file = public_path('cipher.txt');
-        $decryptor = public_path('key.txt');
-        if (!file_exists($file) || !file_exists($decryptor)) {
+        $decryptor = public_path('cipher.txt');
+        $key = public_path('key.txt');
+        if (!file_exists($key) || !file_exists($decryptor)) {
             return response()->view('errors.subscribe');
         }
 
         try {
-            $key = CryptoKey::Import(file_get_contents("key.txt"));
-            $ciphertext = file_get_contents("cipher.txt");
+            $key = CryptoKey::Import(file_get_contents($key));
+            $ciphertext = file_get_contents($decryptor);
             $name = $key->Unlock($ciphertext);
             $check = $this->checkSubscription($name);
             if (!$check) return response()->view('errors.subscribe');
