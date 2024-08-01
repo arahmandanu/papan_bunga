@@ -15,7 +15,7 @@ class SyncController extends Controller
      */
     public function index()
     {
-        $flags = Currency::all();
+        $flags = Currency::all()->toArray();
         return response()->json([
             'data' => $flags,
             'status' => 200,

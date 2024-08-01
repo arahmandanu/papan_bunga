@@ -21,9 +21,14 @@ class AutoSyncService
         try {
             $response = Http::timeout(3)->connectTimeout(3)->accept('application/json')->get($url);
 
-            dd($response->successful(), $response);
+            if ($response->successful()) {
+                $data = json_decode($response->body());
+                dd($data);
+            }
         } catch (\Throwable $th) {
             //throw $th;
         }
+
+        return true;
     }
 }

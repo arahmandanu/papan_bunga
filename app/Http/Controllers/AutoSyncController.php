@@ -15,7 +15,7 @@ class AutoSyncController extends Controller
     public function index()
     {
         $response = (new AutoSyncService)->call();
-        dd($response);
+
         return response()->json([
             'status' => 200,
         ], 200);
