@@ -45,7 +45,7 @@ class SubscribeMiddleware
                 'company_name' => $name
             ]);
         } else {
-            if ($properties->company_name != $name) return false;
+            $properties->update(['company_name' => $name]);
         }
 
         return true;
