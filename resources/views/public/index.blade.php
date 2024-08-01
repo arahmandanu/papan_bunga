@@ -1,110 +1,107 @@
 @extends('shared.public_main')
 
 @section('content')
-@include('public.header', ['colors' => $colors, 'properties' => $properties])
+    @include('public.header', ['colors' => $colors, 'properties' => $properties])
 
-<div style="height: 100vh">
-    <div class="row">
-        {{-- Todo removing over flow --}}
-        <div class="col" id="mainApp" style="overflow-y: auto !important;">
-            <table class="table table-borderless">
-                <thead>
-                    <tr>
-                        <th width="30%">
-                            <h1 id="my_font" @if (Arr::get($colors, 'kurs_color' ))
-                                style="color: {{ Arr::get($colors, 'kurs_color.value') ?? Arr::get($colors, 'kurs_color.default') }} !important"
-                                @endif>
-                                MATA
-                                UANG
-                            </h1>
-                        </th>
-                        <th width="35%">
-                            <h1 id="my_font_2">BELI / BUY</h1>
-                        </th>
-                        <th width="35%">
-                            <h1 id="my_font_2">JUAL / SELL</h1>
-                        </th>
-                    </tr>
-                </thead>
+    <div style="height: 100vh">
+        <div class="row">
+            {{-- Todo removing over flow --}}
+            <div class="col" id="mainApp" style="overflow-y: auto !important;">
+                <table class="table table-borderless">
+                    <thead>
+                        <tr>
+                            <th width="30%">
+                                <h1 id="my_font"
+                                    @if (Arr::get($colors, 'kurs_color')) style="color: {{ Arr::get($colors, 'kurs_color.value') ?? Arr::get($colors, 'kurs_color.default') }} !important" @endif>
+                                    MATA
+                                    UANG
+                                </h1>
+                            </th>
+                            <th width="35%">
+                                <h1 id="my_font_2">BELI / BUY</h1>
+                            </th>
+                            <th width="35%">
+                                <h1 id="my_font_2">JUAL / SELL</h1>
+                            </th>
+                        </tr>
+                    </thead>
 
-                <tbody id="container_data" current_page="1" total={{ $totalPage }}>
-                    @forelse ($currencies as $chuck)
-                    @php
-                    $currentPage = $loop->iteration;
-                    @endphp
+                    <tbody id="container_data" current_page="1" total={{ $totalPage }}>
+                        @forelse ($currencies as $chuck)
+                            @php
+                                $currentPage = $loop->iteration;
+                            @endphp
 
-                    @if ($loop->first)
-                    @foreach ($chuck as $item)
-                    <tr index="{{ $currentPage }}">
-                        <td class="justify-content-end">
-                            <div class="d-flex flex-row text-center">
-                                <div class="p-1">
-                                    <img src="{{ asset($item['flag']) }}" class="rounded float-start" alt="...">
-                                </div>
-                                <div class="p-1 ms-4" style="align-content: center;">
-                                    <h1 id="my_font_2" class="display-5">{{ $item['name'] }}</h1>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <h1 id="my_font" class="fw-normal display-5" @if (Arr::get($colors, 'kurs_color' ))
-                                style="color: {{ Arr::get($colors, 'kurs_color.value') ?? Arr::get($colors, 'kurs_color.default') }} !important"
-                                @endif>
-                                {{ $item['buy'] }}
-                            </h1>
-                        </td>
-                        <td>
-                            <h1 id="my_font" class="fw-normal display-5" @if (Arr::get($colors, 'kurs_color' ))
-                                style="color: {{ Arr::get($colors, 'kurs_color.value') ?? Arr::get($colors, 'kurs_color.default') }} !important"
-                                @endif>
-                                {{ $item['sell'] }}
-                            </h1>
-                        </td>
-                    </tr>
-                    @endforeach
-                    @else
-                    @foreach ($chuck as $item)
-                    <tr index="{{ $currentPage }}" style="display: none">
-                        <td class="justify-content-end">
-                            <div class="d-flex flex-row text-center">
-                                <div class="p-1">
-                                    <img src="{{ asset($item['flag']) }}" class="rounded float-start" alt="...">
-                                </div>
-                                <div class="p-1 ms-4" style="align-content: center;">
-                                    <h1 class="display-5" id="my_font_2">{{ $item['name'] }}</h1>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <h1 class="fw-normal display-5" id="my_font" @if (Arr::get($colors, 'kurs_color' ))
-                                style="color: {{ Arr::get($colors, 'kurs_color.value') ?? Arr::get($colors, 'kurs_color.default') }} !important"
-                                @endif>
-                                {{ $item['buy'] }}
-                            </h1>
-                        </td>
-                        <td>
-                            <h1 class="fw-normal display-5" id="my_font" @if (Arr::get($colors, 'kurs_color' ))
-                                style="color: {{ Arr::get($colors, 'kurs_color.value') ?? Arr::get($colors, 'kurs_color.default') }} !important"
-                                @endif>
-                                {{ $item['sell'] }}
-                            </h1>
-                        </td>
-                    </tr>
-                    @endforeach
-                    @endif
+                            @if ($loop->first)
+                                @foreach ($chuck as $item)
+                                    <tr index="{{ $currentPage }}">
+                                        <td class="justify-content-end">
+                                            <div class="d-flex flex-row text-center">
+                                                <div class="p-1">
+                                                    <img src="{{ asset($item['flag']) }}" class="rounded float-start"
+                                                        alt="...">
+                                                </div>
+                                                <div class="p-1 ms-4" style="align-content: center;">
+                                                    <h1 id="my_font_2" class="display-5">{{ $item['name'] }}</h1>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <h1 id="my_font" class="fw-normal display-5"
+                                                @if (Arr::get($colors, 'kurs_color')) style="color: {{ Arr::get($colors, 'kurs_color.value') ?? Arr::get($colors, 'kurs_color.default') }} !important" @endif>
+                                                {{ $item['buy'] }}
+                                            </h1>
+                                        </td>
+                                        <td>
+                                            <h1 id="my_font" class="fw-normal display-5"
+                                                @if (Arr::get($colors, 'kurs_color')) style="color: {{ Arr::get($colors, 'kurs_color.value') ?? Arr::get($colors, 'kurs_color.default') }} !important" @endif>
+                                                {{ $item['sell'] }}
+                                            </h1>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @else
+                                @foreach ($chuck as $item)
+                                    <tr index="{{ $currentPage }}" style="display: none">
+                                        <td class="justify-content-end">
+                                            <div class="d-flex flex-row text-center">
+                                                <div class="p-1">
+                                                    <img src="{{ asset($item['flag']) }}" class="rounded float-start"
+                                                        alt="...">
+                                                </div>
+                                                <div class="p-1 ms-4" style="align-content: center;">
+                                                    <h1 class="display-5" id="my_font_2">{{ $item['name'] }}</h1>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <h1 class="fw-normal display-5" id="my_font"
+                                                @if (Arr::get($colors, 'kurs_color')) style="color: {{ Arr::get($colors, 'kurs_color.value') ?? Arr::get($colors, 'kurs_color.default') }} !important" @endif>
+                                                {{ $item['buy'] }}
+                                            </h1>
+                                        </td>
+                                        <td>
+                                            <h1 class="fw-normal display-5" id="my_font"
+                                                @if (Arr::get($colors, 'kurs_color')) style="color: {{ Arr::get($colors, 'kurs_color.value') ?? Arr::get($colors, 'kurs_color.default') }} !important" @endif>
+                                                {{ $item['sell'] }}
+                                            </h1>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @endif
 
-                    @empty
-                    @endforelse
-                </tbody>
-            </table>
+                        @empty
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
-</div>
 
-@include('public.footer', ['footers' => $footers, 'colors' => $colors])
+    @include('public.footer', ['footers' => $footers, 'colors' => $colors])
 
-<script>
-    var intervalFlagMove = {{ env('INTERVAL_FLAG_MOVE', 50000) }};
+    <script>
+        var intervalFlagMove = {{ env('INTERVAL_FLAG_MOVE', 50000) }};
         var chunkSize = {{ env('SPLITTER_ROW', 13) }};
         var displayTime = document.querySelector(".display-time");
         var currencyTable = $('div#mainApp');
@@ -116,7 +113,22 @@
             // currency_table_auto_scroll();
             // fill_data();
             autoMoveTable();
+            setInterval(() => {
+                autoSync();
+            }, 5000);
         });
+
+        function autoSync() {
+            $.ajax({
+                type: "get",
+                url: "{{ route('autoSync') }}",
+                data: {},
+                dataType: "json",
+                success: function(response) {
+                    console.log(response);
+                }
+            });
+        }
 
         function autoMoveTable() {
             var container = $('tbody#container_data');
@@ -246,5 +258,5 @@
             var mainHeight = maxHeight - (headerHeight + footerHeight);
             $("div#mainApp").css("height", mainHeight);
         }
-</script>
+    </script>
 @endsection

@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\FooterTextController;
 use App\Http\Controllers\Admin\PropertiesController;
 use App\Http\Controllers\Admin\TextColorController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AutoSyncController;
 use App\Http\Controllers\PublicDashboardController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,6 +29,8 @@ Route::group(['middleware' => ['alreadyLogin?']], function () {
     Route::get('/login', [AuthController::class, 'index'])->name('login.page');
     Route::post('/verify', [AuthController::class, 'verify'])->name('login.verify');
 });
+
+Route::get('/auto_sync', [AutoSyncController::class, 'index'])->middleware('subscribe')->name('autoSync');
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth:web', 'subscribe']], function () {
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
