@@ -20,7 +20,7 @@ class AutoSyncService
         $path = '/api/get_currency';
         $url = $domain . $path;
         try {
-            $response = Http::timeout(3)->connectTimeout(3)->get($url);
+            $response = Http::timeout(5)->connectTimeout(5)->get($url);
 
             if ($response->successful()) {
                 $data = json_decode($response->body(), true);
