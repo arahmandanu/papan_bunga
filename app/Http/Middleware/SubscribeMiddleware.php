@@ -18,13 +18,6 @@ class SubscribeMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        $key = new CryptoKey();
-        $message = "KCP TUBAN";
-        $ciphertext = $key->Lock($message);
-
-        file_put_contents("key.txt", $key->Export());
-        file_put_contents("cipher.txt", $ciphertext);
-
         $decryptor = public_path('cipher.txt');
         $key = public_path('key.txt');
         if (!file_exists($key) || !file_exists($decryptor)) {
