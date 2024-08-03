@@ -19,10 +19,6 @@
             </div>
 
             <div class="col-lg-12">
-                <a type="button" href="{{ route('footer_text.create') }}" class="btn btn-primary rounded-pill">Tambah</a>
-            </div>
-
-            <div class="col-lg-12">
                 <table class="table">
                     <tbody>
                         @forelse ($colors as $item)
