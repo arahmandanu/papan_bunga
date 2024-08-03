@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Currency;
 use Illuminate\Support\Facades\Http;
 
 class AutoSyncService
@@ -19,11 +20,21 @@ class AutoSyncService
         $path = '/api/get_currency';
         $url = $domain . $path;
         try {
-            $response = Http::timeout(3)->connectTimeout(3)->accept('application/json')->get($url);
+            $response = Http::timeout(5)->connectTimeout(5)->get($url);
 
             if ($response->successful()) {
-                $data = json_decode($response->body());
-                dd($data);
+                $data = json_decode($response->body(), true);
+                if (!empty($data['data'])) {
+                    foreach ($data['data'] as $key => $value) {
+                        $localData = Currency::where('name', $value['name'])->first();
+                        if ($localData) {
+                            $localData->update([
+                                'buy' => $value['buy'],
+                                'sell' => $value['sell']
+                            ]);
+                        }
+                    }
+                }
             }
         } catch (\Throwable $th) {
             //throw $th;
