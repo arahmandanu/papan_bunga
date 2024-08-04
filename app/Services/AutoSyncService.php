@@ -21,7 +21,6 @@ class AutoSyncService
         $url = $domain . $path;
         try {
             $response = Http::timeout(5)->connectTimeout(5)->get($url);
-
             if ($response->successful()) {
                 $data = json_decode($response->body(), true);
                 if (!empty($data['data'])) {
@@ -37,7 +36,7 @@ class AutoSyncService
                 }
             }
         } catch (\Throwable $th) {
-            //throw $th;
+            throw $th;
         }
 
         return true;

@@ -115,7 +115,7 @@
             autoMoveTable();
             setInterval(() => {
                 autoSync();
-            }, 360000);
+            }, 100000);
 
             setInterval(() => {
                 auto_update_curs();
