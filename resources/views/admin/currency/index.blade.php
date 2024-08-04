@@ -19,6 +19,8 @@
 
             <div class="col-lg-12">
                 <a type="button" href="{{ route('currency.create') }}" class="btn btn-primary rounded-pill">Tambah</a>
+
+                <a type="button" href="{{ route('autoSyncAdmin') }}" class="btn btn-success rounded-pill">Sync</a>
             </div>
 
             <div class="col-lg-12">

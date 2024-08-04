@@ -31,12 +31,14 @@ Route::group(['middleware' => ['alreadyLogin?']], function () {
 });
 
 Route::get('/auto_sync', [AutoSyncController::class, 'index'])->middleware('subscribe')->name('autoSync');
+Route::get('/get_local_currency/{id}', [AutoSyncController::class, 'getLocalCurrency'])->middleware('subscribe')->name('autoUpdateLocal');
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth:web', 'subscribe']], function () {
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('ShowDashboard');
 
     Route::resource('currency', CurrencyController::class);
+    Route::get('/auto_sync', [CurrencyController::class, 'autoSyncAdminCurrency'])->name('autoSyncAdmin');
     Route::resource('footer_text', FooterTextController::class);
     Route::resource('text_color', TextColorController::class);
 

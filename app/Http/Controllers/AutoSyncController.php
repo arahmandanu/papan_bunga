@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Currency;
 use App\Services\AutoSyncService;
 use Illuminate\Http\Request;
 
@@ -12,15 +13,21 @@ class AutoSyncController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $response = (new AutoSyncService)->call();
+        (new AutoSyncService)->call();
 
-        return response()->json([
-            'status' => 200,
-        ], 200);
+        if ($request->wantsJson()) {
+            return response()->json([
+                'status' => 200,
+            ], 200);
+        }
     }
 
+    public function getLocalCurrency($id)
+    {
+        return Currency::findOrFail($id);
+    }
     /**
      * Show the form for creating a new resource.
      *

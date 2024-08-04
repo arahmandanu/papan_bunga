@@ -18,7 +18,7 @@
                     <div class="col">
                         <div class="card info-card sales-card">
                             <div class="card-body text-center p-5">
-                                <h1>Selamat data di halaman settings Papan Bunga</h1>
+                                <h1>Selamat datang di halaman settings Papan Bunga</h1>
                                 <h5 class="card-title">Silahkan settings sesuai kebutuhan anda!</h5>
                             </div>
                         </div>

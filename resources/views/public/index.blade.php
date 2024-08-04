@@ -34,7 +34,7 @@
 
                             @if ($loop->first)
                                 @foreach ($chuck as $item)
-                                    <tr index="{{ $currentPage }}">
+                                    <tr index="{{ $currentPage }}" number="{{ $item['id'] }}">
                                         <td class="justify-content-end">
                                             <div class="d-flex flex-row text-center">
                                                 <div class="p-1">
@@ -62,7 +62,7 @@
                                 @endforeach
                             @else
                                 @foreach ($chuck as $item)
-                                    <tr index="{{ $currentPage }}" style="display: none">
+                                    <tr index="{{ $currentPage }}" style="display: none" number="{{ $item['id'] }}">
                                         <td class="justify-content-end">
                                             <div class="d-flex flex-row text-center">
                                                 <div class="p-1">
@@ -110,13 +110,51 @@
         $(document).ready(function() {
             countHeight();
             updateDate();
-            // currency_table_auto_scroll();
-            // fill_data();
+            // currency_table_auto_scroll();  NOT USED
+            // fill_data(); NOT USED
             autoMoveTable();
             setInterval(() => {
                 autoSync();
-            }, 5000);
+            }, 360000);
+
+            setInterval(() => {
+                auto_update_curs();
+            }, 120000);
         });
+
+        function auto_update_curs() {
+            var total = $('tbody#container_data').find('tr');
+            if (total.length > 0) {
+                $.each(total, function(indexInArray, valueOfElement) {
+                    $.ajax({
+                        type: "GET",
+                        url: "{{ route('autoUpdateLocal', '') }}" + '/' + valueOfElement.getAttribute(
+                            'number'),
+                        data: {},
+                        dataType: "JSON",
+                        success: function(data, textStatus, jqXHR) {
+                            if (jqXHR.status == 200) {
+                                if (data.hasOwnProperty('buy')) {
+                                    if (data.buy) {
+                                        var buy = valueOfElement.getElementsByTagName('td')[1];
+                                        a = buy.getElementsByTagName('h1')[0];
+                                        a.innerHTML = data.buy;
+                                    }
+                                }
+
+                                if (data.hasOwnProperty('sell')) {
+                                    if (data.sell) {
+                                        var sell = valueOfElement.getElementsByTagName('td')[2];
+                                        b = sell.getElementsByTagName('h1')[0];
+                                        b.innerHTML = data.sell;
+                                    }
+                                }
+                            }
+                        }
+                    });
+                });
+            }
+        }
 
         function autoSync() {
             $.ajax({
@@ -165,67 +203,6 @@
             }, intervalFlagMove);
         }
 
-        function fill_data() {
-            if (flags.length == 0) return;
-
-            var container = $('tbody#container_data');
-            var splitted = []
-            for (let i = 0; i < flags.length; i += chunkSize) {
-                var chunkeddata = flags.slice(i, i + chunkSize);
-                splitted.push(chunkeddata);
-            }
-
-            indexed = container.attr("index");
-            if (indexed === undefined || indexed === 0) {
-                var index = 0;
-            } else {
-                var index = parseInt(indexed);
-            }
-
-            var usedData = splitted[index];
-            if (usedData === undefined) {
-                if (splitted.length > 0) {
-
-                    var index = 0;
-                    var usedData = splitted[index];
-                } else {
-                    return;
-                }
-            }
-
-            html = '';
-            $.each(usedData, function(indexInArray, valueOfElement) {
-                html += '<tr>';
-                html += '<td class="justify-content-end">';
-                html += '<div class="d-flex flex-row text-center">';
-                html += '<div class="p-3">';
-                html += '<img src="{{ asset('') }}' + valueOfElement.flag +
-                    '" class="rounded float-start" alt="...">';
-                html += '</div>';
-                html += '<div class="p-3" style="align-content: center">';
-                html += '<span class="display-5" id="my_font_2" >' + valueOfElement.name + '</span>';
-                html += ' </div>';
-                html += ' </div>';
-                html += '</td>';
-                html += '<td>';
-                html += ' <span class="display-5" id="my_font" >' + valueOfElement.buy + '</span>';
-                html += '</td>';
-                html += '<td>';
-                html += '<span class="display-5" id="my_font" >' + valueOfElement.sell + '</span>';
-                html += '</td>';
-                html += '</tr>';
-            });
-
-            container[0].setAttribute('index', index + 1);
-            container.fadeOut(400, function() {
-                $(this).html(html).fadeIn(400);
-            });
-
-            setTimeout(() => {
-                fill_data();
-            }, intervalFlagMove);
-        }
-
         function currency_table_auto_scroll() {
             function scroolUp() {
                 currencyTable.animate({
@@ -258,5 +235,67 @@
             var mainHeight = maxHeight - (headerHeight + footerHeight);
             $("div#mainApp").css("height", mainHeight);
         }
+
+
+        // function fill_data() {
+        //     if (flags.length == 0) return;
+
+        //     var container = $('tbody#container_data');
+        //     var splitted = []
+        //     for (let i = 0; i < flags.length; i += chunkSize) {
+        //         var chunkeddata = flags.slice(i, i + chunkSize);
+        //         splitted.push(chunkeddata);
+        //     }
+
+        //     indexed = container.attr("index");
+        //     if (indexed === undefined || indexed === 0) {
+        //         var index = 0;
+        //     } else {
+        //         var index = parseInt(indexed);
+        //     }
+
+        //     var usedData = splitted[index];
+        //     if (usedData === undefined) {
+        //         if (splitted.length > 0) {
+
+        //             var index = 0;
+        //             var usedData = splitted[index];
+        //         } else {
+        //             return;
+        //         }
+        //     }
+
+        //     html = '';
+        //     $.each(usedData, function(indexInArray, valueOfElement) {
+        //         html += '<tr>';
+        //         html += '<td class="justify-content-end">';
+        //         html += '<div class="d-flex flex-row text-center">';
+        //         html += '<div class="p-3">';
+        //         html += '<img src="{{ asset('') }}' + valueOfElement.flag +
+        //             '" class="rounded float-start" alt="...">';
+        //         html += '</div>';
+        //         html += '<div class="p-3" style="align-content: center">';
+        //         html += '<span class="display-5" id="my_font_2" >' + valueOfElement.name + '</span>';
+        //         html += ' </div>';
+        //         html += ' </div>';
+        //         html += '</td>';
+        //         html += '<td>';
+        //         html += ' <span class="display-5" id="my_font" >' + valueOfElement.buy + '</span>';
+        //         html += '</td>';
+        //         html += '<td>';
+        //         html += '<span class="display-5" id="my_font" >' + valueOfElement.sell + '</span>';
+        //         html += '</td>';
+        //         html += '</tr>';
+        //     });
+
+        //     container[0].setAttribute('index', index + 1);
+        //     container.fadeOut(400, function() {
+        //         $(this).html(html).fadeIn(400);
+        //     });
+
+        //     setTimeout(() => {
+        //         fill_data();
+        //     }, intervalFlagMove);
+        // }
     </script>
 @endsection
