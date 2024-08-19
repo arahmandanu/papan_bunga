@@ -3,8 +3,8 @@
         <div class="col-3 text-center align-middle" style="align-content: center;">
             <h1 class="text-white">TIME</h1>
             {{-- 00:12 --}}
-            <h2 class="display-time "
-                @if (Arr::get($colors, 'data_time_color')) style="color: {{ Arr::get($colors, 'data_time_color.value') ?? Arr::get($colors, 'data_time_color.default') }} !important; font-weight: bold"
+            <h2 class="display-time " @if (Arr::get($colors, 'data_time_color' ))
+                style="color: {{ Arr::get($colors, 'data_time_color.value') ?? Arr::get($colors, 'data_time_color.default') }} !important; font-weight: bold"
                 @else style="color: #d65318; font-weight: bold" @endif>
             </h2>
         </div>
@@ -15,8 +15,8 @@
             <h1 class="text-white">{{ Str::upper($properties->company_name ?? 'KOSONG!!!!!') }}</h1>
 
             <div style="padding-top: 10%;">
-                <h1 class="display-5"
-                    @if (Arr::get($colors, 'data_time_color')) style="color: {{ Arr::get($colors, 'data_time_color.value') ?? Arr::get($colors, 'data_time_color.default') }} !important; font-weight: bold"
+                <h1 class="display-5" @if (Arr::get($colors, 'data_time_color' ))
+                    style="color: {{ Arr::get($colors, 'data_time_color.value') ?? Arr::get($colors, 'data_time_color.default') }} !important; font-weight: bold"
                     @else style="color: #d65318; font-weight: bold" @endif>
                     BRI EXCHANGE RATE
                 </h1>
@@ -26,8 +26,8 @@
         <div class="col-3 text-center align-middle" style="align-content: center;">
             <h1 class="text-white display-5">DATE</h1>
             {{-- 27 MEI 2024 --}}
-            <h2 class="" id="display-date"
-                @if (Arr::get($colors, 'data_time_color')) style="color: {{ Arr::get($colors, 'data_time_color.value') ?? Arr::get($colors, 'data_time_color.default') }} !important; font-weight: bold"
+            <h2 class="" id="display-date" @if (Arr::get($colors, 'data_time_color' ))
+                style="color: {{ Arr::get($colors, 'data_time_color.value') ?? Arr::get($colors, 'data_time_color.default') }} !important; font-weight: bold"
                 @else style="color: #d65318; font-weight: bold" @endif>
             </h2>
         </div>
@@ -89,7 +89,7 @@
         var IDCollection = ["day", "daynum", "month", "year"];
 
         // return value array with number as a index
-        var val = [dayWeek[dayName], dayNum, month, year];
+        var val = [dayWeek[dayName], dayNum, month+1, year];
         document.getElementById('display-date').innerHTML = (val[1] + " - " + val[2] + " - " + val[3]);
         today = undefined;
         dayName = undefined;
