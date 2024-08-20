@@ -33,6 +33,7 @@
                             <th>Bendera</th>
                             <th>Beli</th>
                             <th>Jual</th>
+                            <th>No Urutan</th>
                             <th>Ditampilkan?</th>
                             <th>Aksi</th>
                         </tr>
@@ -44,6 +45,7 @@
                                 <td><img style="width: 50px" src="{{ asset($item->flag) }}" alt=""></td>
                                 <td style="text-align: center; vertical-align:middle">{{ $item->buy }}</td>
                                 <td style="text-align: center; vertical-align:middle">{{ $item->sell }}</td>
+                                <td style="text-align: center; vertical-align:middle">{{ $item->display_number }}</td>
                                 <td style="text-align: center; vertical-align:middle">
                                     @if ($item->displayed == 1)
                                         <span class="badge bg-success">yes</span>

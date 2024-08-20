@@ -13,6 +13,11 @@ class Currency extends Model
 
     public $table = 'currency';
 
+    public function scopeOrderedDisplay($query)
+    {
+        return $query->orderBy('display_number', 'asc');
+    }
+
     protected $fillable = [
         'flag',
         'name',
@@ -20,5 +25,6 @@ class Currency extends Model
         'sell',
         'displayed',
         'default',
+        'display_number'
     ];
 }

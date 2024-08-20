@@ -19,7 +19,7 @@ class PublicDashboardController extends Controller
     {
         $properties = Properties::first();
         $maxShow = env('TOTAL_FLAG_SHOWED', 10);
-        $flags = Currency::where('displayed', true)->get()->toArray();
+        $flags = Currency::where('displayed', true)->OrderedDisplay()->get()->toArray();
         $data = array_chunk($flags, $maxShow);
         $footers = FooterText::orderBy('number_show', 'asc')->get()->pluck('text');
         $allColor = TextColor::all();

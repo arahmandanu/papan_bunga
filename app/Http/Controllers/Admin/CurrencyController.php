@@ -18,7 +18,7 @@ class CurrencyController extends Controller
     public function index()
     {
         return view('admin.currency.index', [
-            'currencies' => Currency::all(),
+            'currencies' => Currency::OrderedDisplay()->get(),
         ]);
     }
 
@@ -29,7 +29,11 @@ class CurrencyController extends Controller
      */
     public function create()
     {
-        return view('admin.currency.create');
+        $defaultNumber = range(1, 50);
+        $used = Currency::all()->pluck('display_number')->toArray();
+        return view('admin.currency.create', [
+            'displayNumber' => array_diff($defaultNumber, $used)
+        ]);
     }
 
     public function autoSyncAdminCurrency()
@@ -52,6 +56,7 @@ class CurrencyController extends Controller
             'name' => 'required|string',
             'buy' => 'required|string',
             'sell' => 'required|string',
+            'display_number' => ['required', 'integer', 'unique:currency,display_number'],
         ])->validate();
 
         $images = $request->flag;
@@ -82,8 +87,15 @@ class CurrencyController extends Controller
 
     public function edit(Currency $currency)
     {
+        $defaultNumber = range(1, 50);
+        $used = Currency::where('id', '!=', $currency->id)->pluck('display_number')->toArray();
+
+        $canUsed = [];
+        $canUsed = array_merge($canUsed, array_diff($defaultNumber, $used));
+
         return view('admin.currency.edit', [
             'currency' => $currency,
+            'displayNumbers' => $canUsed
         ]);
     }
 
@@ -99,6 +111,7 @@ class CurrencyController extends Controller
             'buy' => 'required|string',
             'sell' => 'required|string',
             'displayed' => 'required|boolean',
+            'display_number' => "required|integer|unique:currency,display_number,$currency->id",
         ])->validate();
 
         if ($request->flag) {

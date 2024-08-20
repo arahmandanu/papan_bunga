@@ -43,6 +43,17 @@
                         <input type="text" class="form-control" name="sell" id="inputName5" required>
                     </div>
 
+                    <div class="col-md-4">
+                        <label for="inputState" class="form-label">No Urutan</label>
+                        <select id="inputState" class="form-select" name="display_number" required>
+                            @forelse ($displayNumber as $item)
+                                <option value="{{ $item }}">{{ $item }}</option>
+                            @empty
+                                <option value="">Data Kosong</option>
+                            @endforelse
+                        </select>
+                    </div>
+
                     <div class="text-center">
                         <button type="submit" class="btn btn-primary">Submit</button>
                         <button type="reset" class="btn btn-secondary">Reset</button>

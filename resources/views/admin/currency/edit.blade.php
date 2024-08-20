@@ -52,6 +52,18 @@
                             value="{{ $currency->sell }}">
                     </div>
 
+                    <div class="col-md-4">
+                        <label for="inputState" class="form-label">No Urutan</label>
+                        <select id="inputState" class="form-select" name="display_number" required>
+                            @forelse ($displayNumbers as $item)
+                                <option value="{{ $item }}"
+                                    {{ $item == $currency->display_number ? 'selected' : '' }}>{{ $item }}</option>
+                            @empty
+                                <option value="">Data Kosong</option>
+                            @endforelse
+                        </select>
+                    </div>
+
                     <div class="col-md-12">
                         <fieldset class="row mb-3">
                             <legend class="col-form-label col-sm-2 pt-0">Tampilkan</legend>
